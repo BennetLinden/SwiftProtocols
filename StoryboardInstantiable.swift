@@ -8,12 +8,14 @@
 
 import UIKit
 
-protocol StoryboardInstantiable { }
+protocol StoryboardInstantiable: class {
+    static var storyboardName: String { get }
+}
 
 extension StoryboardInstantiable where Self: UIViewController {
-    
-    static func instanceFromStoryboard(name: String) -> Self {
-        let storyboard = UIStoryboard(name: name, bundle: nil)
+
+    static func instanceFromStoryboard() -> Self {
+        let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
         return storyboard.instantiateViewController(withIdentifier: String(describing: Self.self)) as! Self
     }
 }

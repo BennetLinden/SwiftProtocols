@@ -14,8 +14,8 @@ protocol StoryboardInstantiable: class {
 
 extension StoryboardInstantiable where Self: UIViewController {
 
-    static func instanceFromStoryboard() -> Self {
+    static func instanceFromStoryboard() -> Self? {
         let storyboard = UIStoryboard(name: storyboardName, bundle: nil)
-        return storyboard.instantiateViewController(withIdentifier: String(describing: Self.self)) as! Self
+        return storyboard.instantiateViewController(withIdentifier: String(describing: Self.self)) as? Self
     }
 }
